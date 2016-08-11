@@ -9,8 +9,8 @@ static void setup(){
 }
 
 static void assertRomanIsInValid(char * input){
-  int exitCode = toNumeric(&result, input);
-  ck_assert_int_eq(exitCode, INVALID_ROMAN_ERROR_CODE);
+  int actualCode = toNumeric(&result, input);
+  ck_assert_int_eq(actualCode, INVALID_ROMAN_ERROR_CODE);
 }
 
 START_TEST(toNumericValidationTests)
