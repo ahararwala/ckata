@@ -16,6 +16,7 @@ static void assertRomanIsInValid(char * input){
 START_TEST(toNumericValidationInvalidBasicRomanTests)
 {
 	assertRomanIsInValid("IIII");
+	assertRomanIsInValid("XXXX");
 }
 END_TEST
 
