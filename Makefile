@@ -1,4 +1,4 @@
-CFLAGS=-Wall
+CFLAGS := -std=c99 -Wall -Werror -g
 LIBS=-lcheck
 
 all: ckata
