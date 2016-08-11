@@ -13,7 +13,7 @@ static void assertRomanIsInValid(char * input){
   ck_assert_int_eq(actualCode, INVALID_ROMAN_ERROR_CODE);
 }
 
-START_TEST(toNumericValidationTests)
+START_TEST(toNumericValidationInvalidBasicRomanTests)
 {
 	assertRomanIsInValid("IIII");
 }
@@ -27,7 +27,7 @@ int main(void)
     int nf;
 
     suite_add_tcase(s1, tc1_1);
-    tcase_add_test(tc1_1, toNumericValidationTests);
+    tcase_add_test(tc1_1, toNumericValidationInvalidBasicRomanTests);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);
