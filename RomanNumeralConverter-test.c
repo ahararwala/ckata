@@ -52,6 +52,7 @@ START_TEST(toNumericShouldDeductWhenLowerValueRomanIsBeforeHigherValueRomanTests
   assertRomanIsConvertedToNumeral("IV", 4);
   assertRomanIsConvertedToNumeral("IX", 9);
   assertRomanIsConvertedToNumeral("CM", 900);
+  assertRomanIsConvertedToNumeral("XXXV", 35);
 }
 END_TEST
 
