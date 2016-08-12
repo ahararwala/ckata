@@ -18,12 +18,15 @@ int getRuleFor(char roman);
 int getBasicRomanToNumberValue(const char roman);
 
 int toRoman(char *output, int arabic){
+  int remaining = arabic;
   if (arabic == 4) {
     strcat(output, "IV");
-    return SUCCESS_CODE;
+    remaining -= 4;
   }
-
-  int remaining = arabic;
+  if (arabic == 9) {
+    strcat(output, "IX");
+    remaining -= 9;
+  }
   if (remaining >= 5) {
     strcat(output, "V");
     remaining -= 5;

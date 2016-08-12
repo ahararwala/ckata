@@ -79,14 +79,19 @@ START_TEST(toNumericShouldAddOrSubtractDependingUponThePositionTests) {
 END_TEST
 
 
-START_TEST(toRomanTests) {
+START_TEST(toRomanSuffixTests) {
   assertNumberIsConvertedToRoman(1, "I");
   assertNumberIsConvertedToRoman(2, "II");
   assertNumberIsConvertedToRoman(3, "III");
-  assertNumberIsConvertedToRoman(4, "IV");
   assertNumberIsConvertedToRoman(5, "V");
   assertNumberIsConvertedToRoman(6, "VI");
   assertNumberIsConvertedToRoman(8, "VIII");
+}
+END_TEST
+
+START_TEST(toRomanPrefixTests) {
+  assertNumberIsConvertedToRoman(4, "IV");
+  assertNumberIsConvertedToRoman(9, "IX");
 }
 END_TEST
 
@@ -111,7 +116,8 @@ int main(void)
     tcase_add_test(toNumericTestCase, toNumericShouldAddWhenLowerValueRomanIsAfterHigherValueRomanTests);
     tcase_add_test(toNumericTestCase, toNumericShouldAddOrSubtractDependingUponThePositionTests);
 
-    tcase_add_test(toRomanTestCase, toRomanTests);
+    tcase_add_test(toRomanTestCase, toRomanSuffixTests);
+    tcase_add_test(toRomanTestCase, toRomanPrefixTests);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);
