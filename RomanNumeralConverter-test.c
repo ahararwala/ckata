@@ -72,6 +72,8 @@ START_TEST(toNumericShouldAddOrSubtractDependingUponThePositionTests)
   assertRomanIsConvertedToNumeral("MMXVI", 2016);
   assertRomanIsConvertedToNumeral("LXXIV", 74);
   assertRomanIsConvertedToNumeral("MMMCMXCIX", 3999);
+  assertRomanIsConvertedToNumeral("DCCVII", 707);
+  assertRomanIsConvertedToNumeral("LXXXIX", 89);
 }
 END_TEST
 
