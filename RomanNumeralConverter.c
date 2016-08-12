@@ -19,17 +19,17 @@ int getBasicRomanToNumberValue(const char roman);
 
 int toRoman(char *output, int arabic){
   int remaining = arabic;
-  if (arabic == 4) {
-    strcat(output, "IV");
-    remaining -= 4;
-  }
-  if (arabic == 9) {
+  if (arabic >= 9) {
     strcat(output, "IX");
     remaining -= 9;
   }
   if (remaining >= 5) {
     strcat(output, "V");
     remaining -= 5;
+  }
+  if (remaining >= 4) {
+    strcat(output, "IV");
+    remaining -= 4;
   }
   for (int i = 0; i < remaining; i++) {
     strcat(output, "I");
