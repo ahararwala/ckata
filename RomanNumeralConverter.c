@@ -19,10 +19,21 @@ int toNumeric(int * result, const char *roman) {
   }
 
   if (strlen(roman) > 1) {
-    int candidateValue = getBasicRomanToNumberValue(roman[1]);
-    int prefixCandidateValue = getBasicRomanToNumberValue(roman[0]);
-    if (candidateValue > prefixCandidateValue)
-      *result = candidateValue - prefixCandidateValue;
+    int i=strlen(roman)-1;
+    char candidate = roman[i];
+    int candidateValue = getBasicRomanToNumberValue(candidate);
+    int convertedValue = 0;
+    for (int i= strlen(roman)-1; i >= 0; i--) {
+        char current = roman[i];
+        int currentRomanValue = getBasicRomanToNumberValue(current);
+        if (candidateValue <= currentRomanValue)
+            convertedValue = currentRomanValue + convertedValue;
+        else
+            convertedValue = convertedValue - currentRomanValue;
+
+        candidateValue = currentRomanValue;
+    }
+    *result = convertedValue;
   } else {
     *result = getBasicRomanToNumberValue(roman[0]);
   }

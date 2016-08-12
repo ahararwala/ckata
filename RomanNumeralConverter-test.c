@@ -52,10 +52,19 @@ START_TEST(toNumericShouldDeductWhenLowerValueRomanIsBeforeHigherValueRomanTests
   assertRomanIsConvertedToNumeral("IV", 4);
   assertRomanIsConvertedToNumeral("IX", 9);
   assertRomanIsConvertedToNumeral("CM", 900);
-  assertRomanIsConvertedToNumeral("XXXV", 35);
 }
 END_TEST
 
+START_TEST(toNumericShouldAddWhenLowerValueRomanIsAfterHigherValueRomanTests)
+{
+  assertRomanIsConvertedToNumeral("VI", 6);
+  assertRomanIsConvertedToNumeral("XI", 11);
+  assertRomanIsConvertedToNumeral("LX", 60);
+  assertRomanIsConvertedToNumeral("III", 3);
+  assertRomanIsConvertedToNumeral("VII", 7);
+  assertRomanIsConvertedToNumeral("MLXVI", 1066);
+}
+END_TEST
 int main(void)
 {
     Suite *s1 = suite_create("RomanNumeralConverterSuite");
@@ -68,6 +77,7 @@ int main(void)
     tcase_add_test(tc1_1, toNumericValidationInvalidSequenceMixedRomanTests);
     tcase_add_test(tc1_1, toNumericBasicConversionTests);
     tcase_add_test(tc1_1, toNumericShouldDeductWhenLowerValueRomanIsBeforeHigherValueRomanTests);
+    tcase_add_test(tc1_1, toNumericShouldAddWhenLowerValueRomanIsAfterHigherValueRomanTests);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);
