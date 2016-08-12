@@ -18,26 +18,22 @@ int toNumeric(int * result, const char *roman) {
     return INVALID_ROMAN_ERROR_CODE;
   }
 
-  if (strlen(roman) > 1) {
-    int i=strlen(roman)-1;
-    char candidate = roman[i];
-    int candidateValue = getBasicRomanToNumberValue(candidate);
-    int convertedValue = 0;
-    for (int i= strlen(roman)-1; i >= 0; i--) {
-        char current = roman[i];
-        int currentRomanValue = getBasicRomanToNumberValue(current);
-        if (candidateValue <= currentRomanValue)
-            convertedValue = currentRomanValue + convertedValue;
-        else
-            convertedValue = convertedValue - currentRomanValue;
+  int i=strlen(roman)-1;
+  char candidate = roman[i];
+  int candidateValue = getBasicRomanToNumberValue(candidate);
+  int convertedValue = 0;
+  for (int i= strlen(roman)-1; i >= 0; i--) {
+      char current = roman[i];
+      int currentRomanValue = getBasicRomanToNumberValue(current);
+      if (candidateValue <= currentRomanValue)
+          convertedValue = currentRomanValue + convertedValue;
+      else
+          convertedValue = convertedValue - currentRomanValue;
 
-        candidateValue = currentRomanValue;
-    }
-    *result = convertedValue;
-  } else {
-    *result = getBasicRomanToNumberValue(roman[0]);
+      candidateValue = currentRomanValue;
   }
 
+  *result = convertedValue;
   return SUCCESS_CODE;
 }
 
