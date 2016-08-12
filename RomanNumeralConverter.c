@@ -11,7 +11,7 @@ struct KeyValuePair {
 
 const struct KeyValuePair ROMAN_NUMERALS_SEQUENCE_RULE_MAP[6] = {{"I", 3}, {"X", 3}, {"C", 3}, {"V", 1}, {"L",1}, {"D", 1}};
 const struct KeyValuePair BASIC_ROMAN_TO_NUMBER_MAP[7] = {{"I", 1}, {"V", 5}, {"X", 10}, {"L", 50}, {"C", 100}, {"D", 500}, {"M", 1000}};
-const struct KeyValuePair TO_ROMAN_CONVERSION_MAP[4] = {{"IX", 9},{"V", 5},{"IV", 4},{"I", 1}};
+const struct KeyValuePair TO_ROMAN_CONVERSION_MAP[SIZE_OF_TO_ROMAN_CONVERSION_MAP] = {{"M",1000}, {"CM",900}, {"D",500}, {"CD",400}, {"C",100}, {"XC",90}, {"L",50}, {"XL",40}, { "X",10}, {"IX",9}, {"V",5}, {"IV",4}, {"I",1}};
 
 int validateRomanNumeral(const char* roman);
 int validate(int actualOccurances, char roman);
@@ -21,9 +21,9 @@ int appendRomanNumerals(int arabic, int value, char *romanPart, char *output);
 
 int toRoman(char *output, int arabic){
   int remaining = arabic;
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < 13; i++) {
      remaining = appendRomanNumerals(remaining, TO_ROMAN_CONVERSION_MAP[i].value, TO_ROMAN_CONVERSION_MAP[i].key, output);
-   }
+  }
   return SUCCESS_CODE;
 }
 

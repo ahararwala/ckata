@@ -2,6 +2,12 @@
 #include <check.h>
 #include "RomanNumeralConverter.h"
 
+struct InputExpected {
+    int numberInput;
+    char *expectedRoman;
+};
+const struct InputExpected CHECK_ALL_REQUIRED_PAIRS[13] = {{1, "I"},{4, "IV"},{5, "V"},{9, "IX"},{10, "X"},{40, "XL"},{50, "L"},{90, "XC"},{100, "C"},{400, "CD"},{500, "D"},{900, "CM"},{1000, "M"}};
+
 int result;
 
 static void setup(){
@@ -80,18 +86,26 @@ END_TEST
 
 
 START_TEST(toRomanSuffixTests) {
-  // assertNumberIsConvertedToRoman(1, "I");
+  assertNumberIsConvertedToRoman(1, "I");
   assertNumberIsConvertedToRoman(2, "II");
-  // assertNumberIsConvertedToRoman(3, "III");
-  // assertNumberIsConvertedToRoman(5, "V");
-  // assertNumberIsConvertedToRoman(6, "VI");
-  // assertNumberIsConvertedToRoman(8, "VIII");
+  assertNumberIsConvertedToRoman(3, "III");
+  assertNumberIsConvertedToRoman(5, "V");
+  assertNumberIsConvertedToRoman(6, "VI");
+  assertNumberIsConvertedToRoman(8, "VIII");
 }
 END_TEST
 
 START_TEST(toRomanPrefixTests) {
-  // assertNumberIsConvertedToRoman(4, "IV");
-  // assertNumberIsConvertedToRoman(9, "IX");
+  assertNumberIsConvertedToRoman(4, "IV");
+  assertNumberIsConvertedToRoman(9, "IX");
+}
+END_TEST
+
+START_TEST(toRomanCheckAllRequiredValuesForAlgorithmTests) {
+  int i;
+  for (i = 0; i < 13; i++) {
+      assertNumberIsConvertedToRoman(CHECK_ALL_REQUIRED_PAIRS[i].numberInput, CHECK_ALL_REQUIRED_PAIRS[i].expectedRoman);
+  }
 }
 END_TEST
 
@@ -118,6 +132,7 @@ int main(void)
 
     tcase_add_test(toRomanTestCase, toRomanSuffixTests);
     tcase_add_test(toRomanTestCase, toRomanPrefixTests);
+    tcase_add_test(toRomanTestCase, toRomanCheckAllRequiredValuesForAlgorithmTests);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);
