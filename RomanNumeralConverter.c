@@ -46,7 +46,7 @@ int getRuleFor(char roman) {
   if (roman == 'I' || roman == 'X' || roman == 'C') {
     return 3;
   }
-  if (roman == 'V') {
+  if (roman == 'V' || roman == 'L') {
     return 1;
   }
   return SUCCESS_CODE;
