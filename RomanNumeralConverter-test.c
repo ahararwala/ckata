@@ -84,6 +84,7 @@ START_TEST(toRomanTests) {
   assertNumberIsConvertedToRoman(2, "II");
   assertNumberIsConvertedToRoman(3, "III");
   assertNumberIsConvertedToRoman(4, "IV");
+  assertNumberIsConvertedToRoman(5, "V");
 }
 END_TEST
 
