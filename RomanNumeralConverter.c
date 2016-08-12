@@ -11,7 +11,7 @@ struct KeyValuePair {
 const struct KeyValuePair ROMAN_NUMERALS_SEQUENCE_RULE_MAP[6] = {{"I", 3}, {"X", 3}, {"C", 3}, {"V", 1}, {"L",1}, {"D", 1}};
 const struct KeyValuePair BASIC_ROMAN_TO_NUMBER_MAP[7] = {{"I", 1}, {"V", 5}, {"X", 10}, {"L", 50}, {"C", 100}, {"D", 500}, {"M", 1000}};
 
-int toNumeric(int * result, const char* roman) {
+int toNumeric(int * result, const char *roman) {
   *result = 1;
   int code = validateRomanNumeral(roman);
   if (code == INVALID_ROMAN_ERROR_CODE) {
@@ -22,7 +22,7 @@ int toNumeric(int * result, const char* roman) {
   return SUCCESS_CODE;
 }
 
-int validateRomanNumeral(const char* roman) {
+int validateRomanNumeral(const char *roman) {
   int trackContiguousOccurrences=0;
   int i = 0;
   char candidate = roman[i];
