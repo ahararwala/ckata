@@ -39,6 +39,11 @@ START_TEST(toNumericBasicConversionTests)
 {
 	assertRomanIsConvertedToNumeral("I", 1);
   assertRomanIsConvertedToNumeral("V", 5);
+  assertRomanIsConvertedToNumeral("X", 10);
+  assertRomanIsConvertedToNumeral("L", 50);
+  assertRomanIsConvertedToNumeral("C", 100);
+  assertRomanIsConvertedToNumeral("D", 500);
+  assertRomanIsConvertedToNumeral("M", 1000);
 }
 END_TEST
 int main(void)
