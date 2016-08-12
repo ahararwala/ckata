@@ -11,8 +11,18 @@ struct KeyValuePair {
 const struct KeyValuePair ROMAN_NUMERALS_SEQUENCE_RULE[6] = {{"I", 3}, {"X", 3}, {"C", 3}, {"V", 1}, {"L",1}, {"D", 1}};
 
 int toNumeric(int * result, const char* roman) {
-  * result = 1;
-  return validateRomanNumeral(roman);
+  *result = 1;
+  int code = validateRomanNumeral(roman);
+  if (code == INVALID_ROMAN_ERROR_CODE) {
+    return INVALID_ROMAN_ERROR_CODE;
+  }
+  if (strcmp(roman, "I") == 0) {
+    *result = 1;
+  }
+  if (strcmp(roman, "V") == 0) {
+    *result = 5;
+  }
+  return SUCCESS_CODE;
 }
 
 int validateRomanNumeral(const char* roman) {
