@@ -16,25 +16,26 @@ int validateRomanNumeral(const char* roman);
 int validate(int actualOccurances, char roman);
 int getRuleFor(char roman);
 int getBasicRomanToNumberValue(const char roman);
+int appendRomanNumerals(int arabic, int value, char *romanPart, char *output);
 
 int toRoman(char *output, int arabic){
   int remaining = arabic;
-  if (arabic >= 9) {
-    strcat(output, "IX");
-    remaining -= 9;
-  }
-  if (remaining >= 5) {
-    strcat(output, "V");
-    remaining -= 5;
-  }
-  if (remaining >= 4) {
-    strcat(output, "IV");
-    remaining -= 4;
-  }
+  remaining = appendRomanNumerals(remaining, 9, "IX", output);
+  remaining = appendRomanNumerals(remaining, 5, "V", output);
+  remaining = appendRomanNumerals(remaining, 4, "IV", output);
   for (int i = 0; i < remaining; i++) {
     strcat(output, "I");
   }
   return SUCCESS_CODE;
+}
+
+int appendRomanNumerals(int arabic, int value, char *romanPart, char *output) {
+  int result = arabic;
+  if (result >= value) {
+    strcat(output, romanPart);
+    result -= value;
+  }
+  return result;
 }
 
 int toNumeric(int * result, const char *roman) {
