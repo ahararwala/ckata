@@ -3,6 +3,12 @@
 #include <stdio.h>
 
 #include "RomanNumeralConverter.h"
+struct KeyValuePair {
+     char *key;
+     int value;
+};
+
+const struct KeyValuePair ROMAN_NUMERALS_SEQUENCE_RULE[6] = {{"I", 3}, {"X", 3}, {"C", 3}, {"V", 1}, {"L",1}, {"D", 1}};
 
 int toNumeric(int * result, const char* roman) {
   * result = 1;
@@ -18,7 +24,7 @@ int validateRomanNumeral(const char* roman) {
         trackContiguousOccurrences = trackContiguousOccurrences+1;
       } else {
         candidate = roman[i];
-        trackContigousOccrances = 1;
+        trackContiguousOccurrences = 1;
       }
       int code = validate(trackContiguousOccurrences, roman[i]);
       if (code == INVALID_ROMAN_ERROR_CODE) {
@@ -42,11 +48,12 @@ int validate(int actualOccurances, char roman) {
 }
 
 int getRuleFor(char roman) {
-  if (roman == 'I' || roman == 'X' || roman == 'C') {
-    return 3;
-  }
-  if (roman == 'V' || roman == 'L' || roman == 'D') {
-    return 1;
+  char romanString[2] = {roman, '\0'};
+  int i;
+  for(i=0; i<6; i++) {
+    if (strcmp(romanString, ROMAN_NUMERALS_SEQUENCE_RULE[i].key) == 0) {
+      return ROMAN_NUMERALS_SEQUENCE_RULE[i].value;
+    }
   }
   return SUCCESS_CODE;
 }
