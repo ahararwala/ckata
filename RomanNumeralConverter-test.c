@@ -25,6 +25,7 @@ START_TEST(toNumericValidationInvalidBasicRomanTests)
 	assertRomanIsInValid("CCCC");
 	assertRomanIsInValid("VV");
 	assertRomanIsInValid("LL");
+	assertRomanIsInValid("DD");
 }
 END_TEST
 START_TEST(toNumericBasicConversionTests)
