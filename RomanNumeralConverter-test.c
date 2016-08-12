@@ -23,6 +23,7 @@ START_TEST(toNumericValidationInvalidBasicRomanTests)
 	assertRomanIsInValid("IIII");
 	assertRomanIsInValid("XXXX");
 	assertRomanIsInValid("CCCCC");
+	assertRomanIsInValid("VV");
 }
 END_TEST
 START_TEST(toNumericBasicConversionTests)

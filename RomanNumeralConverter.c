@@ -43,15 +43,11 @@ int validate(int actualOccurances, char roman) {
 }
 
 int getRuleFor(char roman) {
-  if (roman == 'I') {
+  if (roman == 'I' || roman == 'X' || roman == 'C') {
     return 3;
   }
-  if (roman == 'X') {
-    return 3;
+  if (roman == 'V') {
+    return 1;
   }
-  if (roman == 'C') {
-    return 3;
-  }
-
   return SUCCESS_CODE;
 }
