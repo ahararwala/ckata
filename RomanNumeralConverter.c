@@ -17,7 +17,15 @@ int toNumeric(int * result, const char *roman) {
   if (code == INVALID_ROMAN_ERROR_CODE) {
     return INVALID_ROMAN_ERROR_CODE;
   }
-  *result = getBasicRomanToNumberValue(roman);
+
+  if (strlen(roman) > 1) {
+    int candidateValue = getBasicRomanToNumberValue(roman[1]);
+    int prefixCandidateValue = getBasicRomanToNumberValue(roman[0]);
+    if (candidateValue > prefixCandidateValue)
+      *result = candidateValue - prefixCandidateValue;
+  } else {
+    *result = getBasicRomanToNumberValue(roman[0]);
+  }
 
   return SUCCESS_CODE;
 }
@@ -65,8 +73,10 @@ int getRuleFor(char roman) {
   return SUCCESS_CODE;
 }
 
-int getBasicRomanToNumberValue(const char *romanString) {
+int getBasicRomanToNumberValue(const char roman) {
   int i;
+  char romanString[2] = {roman, '\0'};
+
   for(i=0; i<7; i++) {
     if (strcmp(romanString, BASIC_ROMAN_TO_NUMBER_MAP[i].key) == 0) {
       return BASIC_ROMAN_TO_NUMBER_MAP[i].value;
