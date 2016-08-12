@@ -25,8 +25,7 @@ static void assertNumberIsConvertedToRoman(int input, char *expectedResult){
   ck_assert_str_eq(actual, expectedResult);
 }
 
-START_TEST(toNumericValidationInvalidRomanSequenceTests)
-{
+START_TEST(toNumericValidationInvalidRomanSequenceTests) {
 	assertRomanIsInValid("IIII");
 	assertRomanIsInValid("XXXX");
 	assertRomanIsInValid("CCCC");
@@ -36,14 +35,12 @@ START_TEST(toNumericValidationInvalidRomanSequenceTests)
 }
 END_TEST
 
-START_TEST(toNumericValidationInvalidSequenceMixedRomanTests)
-{
+START_TEST(toNumericValidationInvalidSequenceMixedRomanTests) {
 	assertRomanIsInValid("IIIXXIIII");
 	assertRomanIsInValid("VXXXXDCC");
 }
 END_TEST
-START_TEST(toNumericBasicConversionTests)
-{
+START_TEST(toNumericBasicConversionTests) {
 	assertRomanIsConvertedToNumeral("I", 1);
   assertRomanIsConvertedToNumeral("V", 5);
   assertRomanIsConvertedToNumeral("X", 10);
@@ -54,16 +51,14 @@ START_TEST(toNumericBasicConversionTests)
 }
 END_TEST
 
-START_TEST(toNumericShouldDeductWhenLowerValueRomanIsBeforeHigherValueRomanTests)
-{
+START_TEST(toNumericShouldDeductWhenLowerValueRomanIsBeforeHigherValueRomanTests) {
   assertRomanIsConvertedToNumeral("IV", 4);
   assertRomanIsConvertedToNumeral("IX", 9);
   assertRomanIsConvertedToNumeral("CM", 900);
 }
 END_TEST
 
-START_TEST(toNumericShouldAddWhenLowerValueRomanIsAfterHigherValueRomanTests)
-{
+START_TEST(toNumericShouldAddWhenLowerValueRomanIsAfterHigherValueRomanTests) {
   assertRomanIsConvertedToNumeral("VI", 6);
   assertRomanIsConvertedToNumeral("XI", 11);
   assertRomanIsConvertedToNumeral("LX", 60);
@@ -73,8 +68,7 @@ START_TEST(toNumericShouldAddWhenLowerValueRomanIsAfterHigherValueRomanTests)
 }
 END_TEST
 
-START_TEST(toNumericShouldAddOrSubtractDependingUponThePositionTests)
-{
+START_TEST(toNumericShouldAddOrSubtractDependingUponThePositionTests) {
   assertRomanIsConvertedToNumeral("CMXCIX", 999);
   assertRomanIsConvertedToNumeral("MMXVI", 2016);
   assertRomanIsConvertedToNumeral("LXXIV", 74);
@@ -85,8 +79,7 @@ START_TEST(toNumericShouldAddOrSubtractDependingUponThePositionTests)
 END_TEST
 
 
-START_TEST(toRomanTests)
-{
+START_TEST(toRomanTests) {
   assertNumberIsConvertedToRoman(1, "I");
   assertNumberIsConvertedToRoman(2, "II");
   assertNumberIsConvertedToRoman(3, "III");
