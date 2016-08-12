@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "RomanNumeralConverter.h"
+
 struct KeyValuePair {
      char *key;
      int value;
@@ -10,6 +11,16 @@ struct KeyValuePair {
 
 const struct KeyValuePair ROMAN_NUMERALS_SEQUENCE_RULE_MAP[6] = {{"I", 3}, {"X", 3}, {"C", 3}, {"V", 1}, {"L",1}, {"D", 1}};
 const struct KeyValuePair BASIC_ROMAN_TO_NUMBER_MAP[7] = {{"I", 1}, {"V", 5}, {"X", 10}, {"L", 50}, {"C", 100}, {"D", 500}, {"M", 1000}};
+
+int validateRomanNumeral(const char* roman);
+int validate(int actualOccurances, char roman);
+int getRuleFor(char roman);
+int getBasicRomanToNumberValue(const char roman);
+
+int toRoman(char *output, int arabic){
+    strcat(output, "I");
+    return SUCCESS_CODE;
+}
 
 int toNumeric(int * result, const char *roman) {
   *result = 1;

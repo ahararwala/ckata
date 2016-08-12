@@ -18,6 +18,13 @@ static void assertRomanIsConvertedToNumeral(char *input, int expectedResult){
   ck_assert_int_eq(result, expectedResult);
 }
 
+static void assertNumberIsConvertedToRoman(int input, char *expectedResult){
+  char actual[16] = "";
+  int exitCode = toRoman(actual, input);
+  ck_assert_int_eq(exitCode, SUCCESS_CODE);
+  ck_assert_str_eq(actual, expectedResult);
+}
+
 START_TEST(toNumericValidationInvalidRomanSequenceTests)
 {
 	assertRomanIsInValid("IIII");
@@ -77,20 +84,35 @@ START_TEST(toNumericShouldAddOrSubtractDependingUponThePositionTests)
 }
 END_TEST
 
+
+START_TEST(toRomanTests)
+{
+  assertNumberIsConvertedToRoman(1, "I");
+}
+END_TEST
+
 int main(void)
 {
-    Suite *s1 = suite_create("RomanNumeralConverterSuite");
-    TCase *tc1_1 = tcase_create("Core");
-    SRunner *sr = srunner_create(s1);
     int nf;
 
-    suite_add_tcase(s1, tc1_1);
-    tcase_add_test(tc1_1, toNumericValidationInvalidRomanSequenceTests);
-    tcase_add_test(tc1_1, toNumericValidationInvalidSequenceMixedRomanTests);
-    tcase_add_test(tc1_1, toNumericBasicConversionTests);
-    tcase_add_test(tc1_1, toNumericShouldDeductWhenLowerValueRomanIsBeforeHigherValueRomanTests);
-    tcase_add_test(tc1_1, toNumericShouldAddWhenLowerValueRomanIsAfterHigherValueRomanTests);
-    tcase_add_test(tc1_1, toNumericShouldAddOrSubtractDependingUponThePositionTests);
+    Suite *romanConverterSuite = suite_create("RomanNumeralConverterSuite");
+
+    TCase *toNumericTestCase = tcase_create("Convert Roman to Numeral");
+    TCase *toRomanTestCase = tcase_create("Convert Numeral to Roman Numeral");
+
+    SRunner *sr = srunner_create(romanConverterSuite);
+
+    suite_add_tcase(romanConverterSuite, toRomanTestCase);
+    suite_add_tcase(romanConverterSuite, toNumericTestCase);
+
+    tcase_add_test(toNumericTestCase, toNumericValidationInvalidRomanSequenceTests);
+    tcase_add_test(toNumericTestCase, toNumericValidationInvalidSequenceMixedRomanTests);
+    tcase_add_test(toNumericTestCase, toNumericBasicConversionTests);
+    tcase_add_test(toNumericTestCase, toNumericShouldDeductWhenLowerValueRomanIsBeforeHigherValueRomanTests);
+    tcase_add_test(toNumericTestCase, toNumericShouldAddWhenLowerValueRomanIsAfterHigherValueRomanTests);
+    tcase_add_test(toNumericTestCase, toNumericShouldAddOrSubtractDependingUponThePositionTests);
+
+    tcase_add_test(toRomanTestCase, toRomanTests);
 
     srunner_run_all(sr, CK_ENV);
     nf = srunner_ntests_failed(sr);
