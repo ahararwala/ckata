@@ -18,7 +18,7 @@ static void assertRomanIsConvertedToNumeral(char *input, int expectedResult){
   ck_assert_int_eq(result, expectedResult);
 }
 
-START_TEST(toNumericValidationInvalidBasicRomanTests)
+START_TEST(toNumericValidationInvalidRomanSequenceTests)
 {
 	assertRomanIsInValid("IIII");
 	assertRomanIsInValid("XXXX");
@@ -26,6 +26,13 @@ START_TEST(toNumericValidationInvalidBasicRomanTests)
 	assertRomanIsInValid("VV");
 	assertRomanIsInValid("LL");
 	assertRomanIsInValid("DD");
+}
+END_TEST
+
+START_TEST(toNumericValidationInvalidSequenceMixedRomanTests)
+{
+	assertRomanIsInValid("IIIXXIIII");
+	assertRomanIsInValid("VXXXXDCC");
 }
 END_TEST
 START_TEST(toNumericBasicConversionTests)
@@ -41,7 +48,8 @@ int main(void)
     int nf;
 
     suite_add_tcase(s1, tc1_1);
-    tcase_add_test(tc1_1, toNumericValidationInvalidBasicRomanTests);
+    tcase_add_test(tc1_1, toNumericValidationInvalidRomanSequenceTests);
+    tcase_add_test(tc1_1, toNumericValidationInvalidSequenceMixedRomanTests);
     tcase_add_test(tc1_1, toNumericBasicConversionTests);
 
     srunner_run_all(sr, CK_ENV);
