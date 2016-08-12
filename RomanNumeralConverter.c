@@ -22,6 +22,8 @@ int toRoman(char *output, int arabic){
     strcat(output, "IV");
   } else if (arabic == 5) {
     strcat(output, "V");
+  } else if (arabic == 6) {
+    strcat(output, "VI");
   } else {
     for (int i = 0; i < arabic; i++) {
       strcat(output, "I");
