@@ -20,14 +20,16 @@ int getBasicRomanToNumberValue(const char roman);
 int toRoman(char *output, int arabic){
   if (arabic == 4) {
     strcat(output, "IV");
-  } else if (arabic == 5) {
+    return SUCCESS_CODE;
+  }
+
+  int remaining = arabic;
+  if (remaining >= 5) {
     strcat(output, "V");
-  } else if (arabic == 6) {
-    strcat(output, "VI");
-  } else {
-    for (int i = 0; i < arabic; i++) {
-      strcat(output, "I");
-    }
+    remaining -= 5;
+  }
+  for (int i = 0; i < remaining; i++) {
+    strcat(output, "I");
   }
   return SUCCESS_CODE;
 }
