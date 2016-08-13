@@ -14,7 +14,7 @@ int addRomanNumerals(char* output, const char* roman1, const char* roman2){
   exitCode = toNumeric(&num2, roman2);
 
   int sum = num1 + num2;
-  printf("summation=%d\n", sum);
+  // printf("summation=%d\n", sum);
 
   exitCode = toRoman(output, sum);
   return exitCode;

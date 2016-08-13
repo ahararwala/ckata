@@ -13,6 +13,12 @@ static void assertAddRomanNumerals(char *inputRoman1, char *inputRoman2, char *e
 START_TEST(addTests) {
   assertAddRomanNumerals("I","I","II");
   assertAddRomanNumerals("II","I","III");
+  assertAddRomanNumerals("V","V","X");
+  assertAddRomanNumerals("X","I","XI");
+  //Kata test cases
+  assertAddRomanNumerals("XIV","LX","LXXIV");
+  assertAddRomanNumerals("II","II","IV");
+  assertAddRomanNumerals("D","D","M");
 }
 END_TEST
 
