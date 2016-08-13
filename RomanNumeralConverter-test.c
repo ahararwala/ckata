@@ -1,12 +1,13 @@
 #include<stdio.h>
 #include <check.h>
 #include "RomanNumeralConverter.h"
+#include "RomanNumeralCalculator-test.h"
 
 struct InputExpected {
     int numberInput;
     char *expectedRoman;
 };
-const struct InputExpected CHECK_ALL_REQUIRED_PAIRS[13] = {{1, "I"},{4, "IV"},{5, "V"},{9, "IX"},{10, "X"},{40, "XL"},{50, "L"},{90, "XC"},{100, "C"},{400, "CD"},{500, "D"},{900, "CM"},{1000, "M"}};
+const struct InputExpected CHECK_ALL_REQUIRED_PAIRS[SIZE_OF_TO_ROMAN_CONVERSION_MAP] = {{1, "I"},{4, "IV"},{5, "V"},{9, "IX"},{10, "X"},{40, "XL"},{50, "L"},{90, "XC"},{100, "C"},{400, "CD"},{500, "D"},{900, "CM"},{1000, "M"}};
 
 int result;
 
@@ -103,7 +104,7 @@ END_TEST
 
 START_TEST(toRomanCheckAllRequiredValuesForAlgorithmTests) {
   int i;
-  for (i = 0; i < 13; i++) {
+  for (i = 0; i < SIZE_OF_TO_ROMAN_CONVERSION_MAP; i++) {
       assertNumberIsConvertedToRoman(CHECK_ALL_REQUIRED_PAIRS[i].numberInput, CHECK_ALL_REQUIRED_PAIRS[i].expectedRoman);
   }
 }
@@ -114,11 +115,13 @@ int main(void)
     int nf;
 
     Suite *romanConverterSuite = suite_create("RomanNumeralConverterSuite");
+    Suite *calculatorSuite = romanNumeralCalculatorSuite();
 
     TCase *toNumericTestCase = tcase_create("Convert Roman to Numeral");
     TCase *toRomanTestCase = tcase_create("Convert Numeral to Roman Numeral");
 
     SRunner *sr = srunner_create(romanConverterSuite);
+    srunner_add_suite(sr, calculatorSuite);
 
     suite_add_tcase(romanConverterSuite, toRomanTestCase);
     suite_add_tcase(romanConverterSuite, toNumericTestCase);

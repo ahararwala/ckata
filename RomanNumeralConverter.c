@@ -21,7 +21,7 @@ int appendRomanNumerals(int arabic, int value, char *romanPart, char *output);
 
 int toRoman(char *output, int arabic){
   int remaining = arabic;
-  for (int i = 0; i < 13; i++) {
+  for (int i = 0; i < SIZE_OF_TO_ROMAN_CONVERSION_MAP; i++) {
      remaining = appendRomanNumerals(remaining, TO_ROMAN_CONVERSION_MAP[i].value, TO_ROMAN_CONVERSION_MAP[i].key, output);
   }
   return SUCCESS_CODE;
