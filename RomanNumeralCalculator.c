@@ -27,12 +27,29 @@ int addRomanNumerals(char* output, const char* roman1, const char* roman2){
   return toRoman(output, sum);
 }
 
+int subtractRomanNumerals(char* output, const char* roman1, const char* roman2){
+  int exitCode;
+  int num1;
+  int num2;
+
+  exitCode = toNumeric(&num1, roman1);
+  if (isError(exitCode)) {
+    return exitCode;
+  }
+  exitCode = toNumeric(&num2, roman2);
+  if (isError(exitCode)) {
+    return exitCode;
+  }
+  int result = num1 - num2;
+  if (result > MAX_ROMAN_NUMERAL_VALUE || result <= 0) {
+    return INVALID_ROMAN_ERROR_CODE;
+  }
+  return toRoman(output, result);
+}
+
 int isError(int code) {
   if (code == INVALID_ROMAN_ERROR_CODE) {
     return code;
   }
   return SUCCESS_CODE;
-}
-int subtractRomanNumerals(char* output, const char* roman1, const char* roman2){
-  return 0;
 }
