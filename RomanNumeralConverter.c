@@ -97,7 +97,7 @@ int validate(int actualOccurances, char roman) {
 int getRuleFor(char roman) {
   char romanString[2] = {roman, '\0'};
   int i;
-  for(i=0; i<6; i++) {
+  for(i=0; i<SIZE_OF_ROMAN_NUMERALS_SEQUENCE_RULE_MAP; i++) {
     if (strcmp(romanString, ROMAN_NUMERALS_SEQUENCE_RULE_MAP[i].key) == 0) {
       return ROMAN_NUMERALS_SEQUENCE_RULE_MAP[i].value;
     }

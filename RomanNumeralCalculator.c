@@ -41,6 +41,7 @@ int computeRomanNumerals(char* output, Operation  operationToPerform, const char
   }
   return toRoman(output, computedValue);
 }
+
 int performOperation(Operation operationToPerform, int num1, int num2) {
   int computedValue;
   if (operationToPerform == Addition) {
