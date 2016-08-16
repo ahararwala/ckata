@@ -3,27 +3,27 @@ LIBS=-lcheck
 
 all: ckata
 
-ckata: RomanNumeralConverter.o RomanNumeralCalculator.o
-	gcc -o ckata RomanNumeralConverter.o RomanNumeralCalculator.o
+ckata: src/RomanNumeralConverter.o src/RomanNumeralCalculator.o
+	gcc -o ckata src/RomanNumeralConverter.o src/RomanNumeralCalculator.o
 
-RomanNumeralConverter.o: RomanNumeralConverter.c RomanNumeralConverter.h
-	gcc $(CFLAGS) -c RomanNumeralConverter.c
+RomanNumeralConverter.o: src/RomanNumeralConverter.c src/RomanNumeralConverter.h
+	gcc $(CFLAGS) -c src/RomanNumeralConverter.c
 
 RomanNumeralCalculator.o: RomanNumeralCalculator.c RomanNumeralCalculator.h
-	gcc $(CFLAGS) -c RomanNumeralCalculator.c
+	gcc $(CFLAGS) -c src/RomanNumeralCalculator.c
 
 test: ckata-test
 	./ckata-test
 
-ckata-test: RomanNumeralConverter-test.o RomanNumeralCalculator-test.o RomanNumeralConverter.o RomanNumeralCalculator.o
-	gcc -o ckata-test RomanNumeralConverter.o RomanNumeralCalculator.o RomanNumeralConverter-test.o RomanNumeralCalculator-test.o $(LIBS) `pkg-config --cflags --libs check`
+ckata-test: test/RomanNumeralConverter-test.o test/RomanNumeralCalculator-test.o src/RomanNumeralConverter.o src/RomanNumeralCalculator.o
+	gcc -o ckata-test src/RomanNumeralConverter.o src/RomanNumeralCalculator.o test/RomanNumeralConverter-test.o test/RomanNumeralCalculator-test.o $(LIBS) `pkg-config --cflags --libs check`
 
-RomanNumeralConverter-test.o: RomanNumeralConverter-test.c RomanNumeralConverter.h
-	gcc -c RomanNumeralConverter-test.c `pkg-config --cflags --libs check`
+RomanNumeralConverter-test.o: test/RomanNumeralConverter-test.c src/RomanNumeralConverter.h
+	gcc -c test/RomanNumeralConverter-test.c `pkg-config --cflags --libs check`
 
-RomanNumeralCalculator-test.o: RomanNumeralCalculator-test.c RomanNumeralCalculator.h
-	gcc -c RomanNumeralCalculator-test.c `pkg-config --cflags --libs check`
+RomanNumeralCalculator-test.o: test/RomanNumeralCalculator-test.c src/RomanNumeralCalculator.h
+	gcc -c test/RomanNumeralCalculator-test.c `pkg-config --cflags --libs check`
 
 clean:
 	@echo "Cleaning output files and folders...\n"
-	@rm -r -f *.o *.o ckata-test ckata
+	@rm -r -f src/*.o test/*.o ckata-test ckata

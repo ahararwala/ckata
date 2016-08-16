@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include <check.h>
-#include "RomanNumeralCalculator.h"
-#include "RomanNumeralConverter.h"
+#include "../src/RomanNumeralCalculator.h"
+#include "../src/RomanNumeralConverter.h"
 
 static void assertAddRomanNumerals(char *inputRoman1, char *inputRoman2, char *expectedRoman){
   char actual[16] = "";
