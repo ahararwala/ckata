@@ -39,6 +39,8 @@ START_TEST(toNumericValidationInvalidRomanSequenceTests) {
 	assertRomanIsInValid("VV");
 	assertRomanIsInValid("LL");
 	assertRomanIsInValid("DD");
+	assertRomanIsInValid("Z");
+	assertRomanIsInValid("JJ");
 }
 END_TEST
 
@@ -82,6 +84,7 @@ START_TEST(toNumericShouldAddOrSubtractDependingUponThePositionTests) {
   assertRomanIsConvertedToNumeral("MMMCMXCIX", 3999);
   assertRomanIsConvertedToNumeral("DCCVII", 707);
   assertRomanIsConvertedToNumeral("LXXXIX", 89);
+  assertRomanIsConvertedToNumeral("MCMXCV", 1995);
 }
 END_TEST
 

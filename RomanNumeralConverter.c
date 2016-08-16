@@ -39,13 +39,13 @@ int appendRomanNumerals(int arabic, int value, char *romanPart, char *output) {
 int toNumeric(int * result, const char *roman) {
   *result = 1;
   int code = validateRomanNumeral(roman);
-  if (code == INVALID_ROMAN_ERROR_CODE) {
-    return INVALID_ROMAN_ERROR_CODE;
-  }
 
   int i=strlen(roman)-1;
   char candidate = roman[i];
   int candidateValue = getBasicRomanToNumberValue(candidate);
+  if (code == INVALID_ROMAN_ERROR_CODE) {
+    return code;
+  }
   int convertedValue = 0;
   for (int i= strlen(roman)-1; i >= 0; i--) {
       char current = roman[i];
@@ -67,13 +67,17 @@ int validateRomanNumeral(const char *roman) {
   int i = 0;
   char candidate = roman[i];
   while (roman[i] != '\0') {
+      int code;
+      code = getBasicRomanToNumberValue(roman[i]);
+      if (code == INVALID_ROMAN_ERROR_CODE) { return code; }
+
       if (roman[i] == candidate) {
         trackContiguousOccurrences = trackContiguousOccurrences+1;
       } else {
         candidate = roman[i];
         trackContiguousOccurrences = 1;
       }
-      int code = validate(trackContiguousOccurrences, roman[i]);
+      code = validate(trackContiguousOccurrences, roman[i]);
       if (code == INVALID_ROMAN_ERROR_CODE) {
         return INVALID_ROMAN_ERROR_CODE;
       }
