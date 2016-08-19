@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include <check.h>
 #include "../src/RomanNumeralConverter.h"
-#include "RomanNumeralCalculator-test.h"
+#include "RomanNumeralCalculatorTest.h"
 
 struct InputExpected {
     int numberInput;

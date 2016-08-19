@@ -12,18 +12,18 @@ RomanNumeralConverter.o: src/RomanNumeralConverter.c src/RomanNumeralConverter.h
 RomanNumeralCalculator.o: RomanNumeralCalculator.c RomanNumeralCalculator.h
 	gcc $(CFLAGS) -c src/RomanNumeralCalculator.c
 
-test: ckata-test
-	./ckata-test
+test: ckataTest
+	./ckataTest
 
-ckata-test: test/RomanNumeralConverter-test.o test/RomanNumeralCalculator-test.o src/RomanNumeralConverter.o src/RomanNumeralCalculator.o
-	gcc -o ckata-test src/RomanNumeralConverter.o src/RomanNumeralCalculator.o test/RomanNumeralConverter-test.o test/RomanNumeralCalculator-test.o $(LIBS) `pkg-config --cflags --libs check`
+ckataTest: test/RomanNumeralConverterTest.o test/RomanNumeralCalculatorTest.o src/RomanNumeralConverter.o src/RomanNumeralCalculator.o
+	gcc -o ckataTest src/RomanNumeralConverter.o src/RomanNumeralCalculator.o test/RomanNumeralConverterTest.o test/RomanNumeralCalculatorTest.o $(LIBS) `pkg-config --cflags --libs check`
 
-RomanNumeralConverter-test.o: test/RomanNumeralConverter-test.c src/RomanNumeralConverter.h
-	gcc -c test/RomanNumeralConverter-test.c `pkg-config --cflags --libs check`
+RomanNumeralConverterTest.o: test/RomanNumeralConverterTest.c src/RomanNumeralConverter.h
+	gcc -c test/RomanNumeralConverterTest.c `pkg-config --cflags --libs check`
 
-RomanNumeralCalculator-test.o: test/RomanNumeralCalculator-test.c src/RomanNumeralCalculator.h
-	gcc -c test/RomanNumeralCalculator-test.c `pkg-config --cflags --libs check`
+RomanNumeralCalculatorTest.o: test/RomanNumeralCalculatorTest.c src/RomanNumeralCalculator.h
+	gcc -c test/RomanNumeralCalculatorTest.c `pkg-config --cflags --libs check`
 
 clean:
 	@echo "Cleaning output files and folders...\n"
-	@rm -r -f src/*.o test/*.o ckata-test ckata
+	@rm -r -f src/*.o test/*.o ckataTest ckata
