@@ -37,6 +37,8 @@ int appendRomanNumerals(int arabic, int value, char *romanPart, char *output) {
 }
 
 int toNumeric(int * result, const char *roman) {
+  if (roman == NULL) { return INVALID_ROMAN_ERROR_CODE; }
+
   *result = 1;
   int code = validateRomanNumeral(roman);
 

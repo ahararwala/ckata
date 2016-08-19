@@ -43,6 +43,7 @@ START_TEST(toNumericValidationInvalidRomanSequenceTests) {
 	assertRomanIsInValid("JJ");
 	assertRomanIsInValid("abc");
 	assertRomanIsInValid("NULL");
+	assertRomanIsInValid(NULL);
 }
 END_TEST
 
