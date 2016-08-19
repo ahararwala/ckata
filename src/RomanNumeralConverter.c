@@ -90,7 +90,7 @@ int toRoman(char *output, int arabic){
 }
 
 int toNumeric(int * result, const char *roman) {
-  if (roman == NULL) { return INVALID_ROMAN_ERROR_CODE; }
+  if (roman == NULL || strcmp(roman, "") == 0) { return INVALID_ROMAN_ERROR_CODE; }
 
   *result = 1;
   int code = validateRomanNumeral(roman);
