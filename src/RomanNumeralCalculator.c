@@ -10,19 +10,24 @@ typedef enum {
   Subtraction
 } Operation;
 
-int computeRomanNumerals(char* output, Operation  operationToPerform, const char* roman1, const char* roman2);
-int performOperation(Operation operationToPerform, int num1, int num2);
-int isError(int exitCode);
-
-int addRomanNumerals(char* output, const char* roman1, const char* roman2){
-  return computeRomanNumerals(output, Addition, roman1, roman2);
+static int performOperation(Operation operationToPerform, int num1, int num2) {
+  int computedValue;
+  if (operationToPerform == Addition) {
+    computedValue = num1 + num2;
+  } else if (operationToPerform == Subtraction) {
+    computedValue = num1 - num2;
+  }
+  return computedValue;
 }
 
-int subtractRomanNumerals(char* output, const char* roman1, const char* roman2){
-  return computeRomanNumerals(output, Subtraction, roman1, roman2);
+static int isError(int code) {
+  if (code == INVALID_ROMAN_ERROR_CODE) {
+    return code;
+  }
+  return SUCCESS_CODE;
 }
 
-int computeRomanNumerals(char* output, Operation  operationToPerform, const char* roman1, const char* roman2){
+static int computeRomanNumerals(char* output, Operation  operationToPerform, const char* roman1, const char* roman2){
   int exitCode;
   int num1;
   int num2;
@@ -42,19 +47,10 @@ int computeRomanNumerals(char* output, Operation  operationToPerform, const char
   return toRoman(output, computedValue);
 }
 
-int performOperation(Operation operationToPerform, int num1, int num2) {
-  int computedValue;
-  if (operationToPerform == Addition) {
-    computedValue = num1 + num2;
-  } else if (operationToPerform == Subtraction) {
-    computedValue = num1 - num2;
-  }
-  return computedValue;
+int addRomanNumerals(char* output, const char* roman1, const char* roman2){
+  return computeRomanNumerals(output, Addition, roman1, roman2);
 }
 
-int isError(int code) {
-  if (code == INVALID_ROMAN_ERROR_CODE) {
-    return code;
-  }
-  return SUCCESS_CODE;
+int subtractRomanNumerals(char* output, const char* roman1, const char* roman2){
+  return computeRomanNumerals(output, Subtraction, roman1, roman2);
 }
