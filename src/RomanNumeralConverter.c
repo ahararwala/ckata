@@ -13,11 +13,73 @@ const struct KeyValuePair ROMAN_NUMERALS_SEQUENCE_RULE_MAP[SIZE_OF_ROMAN_NUMERAL
 const struct KeyValuePair BASIC_ROMAN_TO_NUMBER_MAP[SIZE_OF_BASIC_ROMAN_TO_NUMBER_MAP] = {{"I", 1}, {"V", 5}, {"X", 10}, {"L", 50}, {"C", 100}, {"D", 500}, {"M", 1000}};
 const struct KeyValuePair TO_ROMAN_CONVERSION_MAP[SIZE_OF_TO_ROMAN_CONVERSION_MAP] = {{"M",1000}, {"CM",900}, {"D",500}, {"CD",400}, {"C",100}, {"XC",90}, {"L",50}, {"XL",40}, { "X",10}, {"IX",9}, {"V",5}, {"IV",4}, {"I",1}};
 
-int validateRomanNumeral(const char* roman);
-int validate(int actualOccurances, char roman);
-int getRuleFor(char roman);
-int getBasicRomanToNumberValue(const char roman);
-int appendRomanNumerals(int arabic, int value, char *romanPart, char *output);
+static int appendRomanNumerals(int arabic, int value, char *romanPart, char *output) {
+  int result = arabic;
+  while (result >= value) {
+    strcat(output, romanPart);
+    result -= value;
+  }
+  return result;
+}
+
+static int getRuleFor(char roman) {
+  char romanString[2] = {roman, '\0'};
+  int i;
+  for(i=0; i<SIZE_OF_ROMAN_NUMERALS_SEQUENCE_RULE_MAP; i++) {
+    if (strcmp(romanString, ROMAN_NUMERALS_SEQUENCE_RULE_MAP[i].key) == 0) {
+      return ROMAN_NUMERALS_SEQUENCE_RULE_MAP[i].value;
+    }
+  }
+  return SUCCESS_CODE;
+}
+
+static int validate(int actualOccurances, char roman) {
+    int allowedContiguousOccurrences = getRuleFor(roman);
+    if (allowedContiguousOccurrences == SUCCESS_CODE) {
+      return SUCCESS_CODE;
+    }
+
+    if (actualOccurances > allowedContiguousOccurrences) {
+        return INVALID_ROMAN_ERROR_CODE;
+    }
+    return SUCCESS_CODE;
+}
+
+static int getBasicRomanToNumberValue(const char roman) {
+  int i;
+  char romanString[2] = {roman, '\0'};
+
+  for(i=0; i<7; i++) {
+    if (strcmp(romanString, BASIC_ROMAN_TO_NUMBER_MAP[i].key) == 0) {
+      return BASIC_ROMAN_TO_NUMBER_MAP[i].value;
+    }
+  }
+  return INVALID_ROMAN_ERROR_CODE;
+}
+
+static int validateRomanNumeral(const char *roman) {
+  int trackContiguousOccurrences=0;
+  int i = 0;
+  char candidate = roman[i];
+  while (roman[i] != '\0') {
+      int code;
+      code = getBasicRomanToNumberValue(roman[i]);
+      if (code == INVALID_ROMAN_ERROR_CODE) { return code; }
+
+      if (roman[i] == candidate) {
+        trackContiguousOccurrences = trackContiguousOccurrences+1;
+      } else {
+        candidate = roman[i];
+        trackContiguousOccurrences = 1;
+      }
+      code = validate(trackContiguousOccurrences, roman[i]);
+      if (code == INVALID_ROMAN_ERROR_CODE) {
+        return INVALID_ROMAN_ERROR_CODE;
+      }
+      i++;
+  }
+	return SUCCESS_CODE;
+}
 
 int toRoman(char *output, int arabic){
   int remaining = arabic;
@@ -25,15 +87,6 @@ int toRoman(char *output, int arabic){
      remaining = appendRomanNumerals(remaining, TO_ROMAN_CONVERSION_MAP[i].value, TO_ROMAN_CONVERSION_MAP[i].key, output);
   }
   return SUCCESS_CODE;
-}
-
-int appendRomanNumerals(int arabic, int value, char *romanPart, char *output) {
-  int result = arabic;
-  while (result >= value) {
-    strcat(output, romanPart);
-    result -= value;
-  }
-  return result;
 }
 
 int toNumeric(int * result, const char *roman) {
@@ -62,63 +115,4 @@ int toNumeric(int * result, const char *roman) {
 
   *result = convertedValue;
   return SUCCESS_CODE;
-}
-
-int validateRomanNumeral(const char *roman) {
-  int trackContiguousOccurrences=0;
-  int i = 0;
-  char candidate = roman[i];
-  while (roman[i] != '\0') {
-      int code;
-      code = getBasicRomanToNumberValue(roman[i]);
-      if (code == INVALID_ROMAN_ERROR_CODE) { return code; }
-
-      if (roman[i] == candidate) {
-        trackContiguousOccurrences = trackContiguousOccurrences+1;
-      } else {
-        candidate = roman[i];
-        trackContiguousOccurrences = 1;
-      }
-      code = validate(trackContiguousOccurrences, roman[i]);
-      if (code == INVALID_ROMAN_ERROR_CODE) {
-        return INVALID_ROMAN_ERROR_CODE;
-      }
-      i++;
-  }
-	return SUCCESS_CODE;
-}
-
-int validate(int actualOccurances, char roman) {
-    int allowedContiguousOccurrences = getRuleFor(roman);
-    if (allowedContiguousOccurrences == SUCCESS_CODE) {
-      return SUCCESS_CODE;
-    }
-
-    if (actualOccurances > allowedContiguousOccurrences) {
-        return INVALID_ROMAN_ERROR_CODE;
-    }
-    return SUCCESS_CODE;
-}
-
-int getRuleFor(char roman) {
-  char romanString[2] = {roman, '\0'};
-  int i;
-  for(i=0; i<SIZE_OF_ROMAN_NUMERALS_SEQUENCE_RULE_MAP; i++) {
-    if (strcmp(romanString, ROMAN_NUMERALS_SEQUENCE_RULE_MAP[i].key) == 0) {
-      return ROMAN_NUMERALS_SEQUENCE_RULE_MAP[i].value;
-    }
-  }
-  return SUCCESS_CODE;
-}
-
-int getBasicRomanToNumberValue(const char roman) {
-  int i;
-  char romanString[2] = {roman, '\0'};
-
-  for(i=0; i<7; i++) {
-    if (strcmp(romanString, BASIC_ROMAN_TO_NUMBER_MAP[i].key) == 0) {
-      return BASIC_ROMAN_TO_NUMBER_MAP[i].value;
-    }
-  }
-  return INVALID_ROMAN_ERROR_CODE;
 }
