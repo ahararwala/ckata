@@ -11,9 +11,6 @@ const struct InputExpected CHECK_ALL_REQUIRED_PAIRS[SIZE_OF_TO_ROMAN_CONVERSION_
 
 int result;
 
-// static void setup(){
-//     result = -100;
-// }
 static void assertRomanIsInValid(char * input){
   int actualCode = toNumeric(&result, input);
   ck_assert_int_eq(actualCode, INVALID_ROMAN_ERROR_CODE);
