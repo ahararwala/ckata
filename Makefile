@@ -15,6 +15,9 @@ RomanNumeralCalculator.o: RomanNumeralCalculator.c RomanNumeralCalculator.h
 test: ckataTest
 	./ckataTest
 
+valgrindTest: ckataTest
+	valgrind --leak-check=yes ./ckataTest
+
 ckataTest: test/RomanNumeralConverterTest.o test/RomanNumeralCalculatorTest.o src/RomanNumeralConverter.o src/RomanNumeralCalculator.o
 	gcc -o ckataTest src/RomanNumeralConverter.o src/RomanNumeralCalculator.o test/RomanNumeralConverterTest.o test/RomanNumeralCalculatorTest.o $(LIBS) `pkg-config --cflags --libs check`
 
