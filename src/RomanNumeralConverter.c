@@ -49,7 +49,7 @@ static int getBasicRomanToNumberValue(const char roman) {
   int i;
   char romanString[2] = {roman, '\0'};
 
-  for(i=0; i<7; i++) {
+  for(i=0; i<SIZE_OF_BASIC_ROMAN_TO_NUMBER_MAP; i++) {
     if (strcmp(romanString, BASIC_ROMAN_TO_NUMBER_MAP[i].key) == 0) {
       return BASIC_ROMAN_TO_NUMBER_MAP[i].value;
     }
